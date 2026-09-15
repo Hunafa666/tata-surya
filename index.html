@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>🪐 Tata Surya Kita — Simulasi 3D Interaktif</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -270,8 +273,17 @@
     <button class="btn filter-btn" data-filter="asteroid">☄️ Asteroid</button>
     <button class="btn filter-btn" data-filter="satellite">🛰️ Satelit</button>
   </div>
-  <script src="js/three.min.js"></script>
-  <script src="js/OrbitControls.js"></script>
-  <script src="js/app.js"></script>
+  <script src="./js/three.min.js?v=2.0"></script>
+  <script src="./js/OrbitControls.js?v=2.0"></script>
+  <script src="./js/app.js?v=2.0"></script>
+  <script>
+    // Fail-safe auto hide loading screen after max 1.5s
+    setTimeout(function() {
+      var ls = document.getElementById('loading-screen');
+      if (ls && !ls.classList.contains('hidden')) {
+        ls.classList.add('hidden');
+      }
+    }, 1500);
+  </script>
 </body>
 </html>
