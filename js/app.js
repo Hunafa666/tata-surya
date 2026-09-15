@@ -1371,24 +1371,33 @@
   // ══════════════════════════════════════════════════════════════════════════
 
   function init() {
-    initScene();
-    createStarfield();
-    createSun();
-    createPlanets();
-    createAsteroidBelt();
-    createArtificialSatellites();
-    setupControls();
+    try {
+      initScene();
+      createStarfield();
+      createSun();
+      createPlanets();
+      createAsteroidBelt();
+      createArtificialSatellites();
+      setupControls();
 
-    // Initialize default category content
-    showCategoryTab('planet');
+      // Initialize default category content
+      showCategoryTab('planet');
 
-    // Hide loading screen
-    setTimeout(function () {
-      document.getElementById('loading-screen').classList.add('hidden');
-    }, 800);
+      // Hide loading screen
+      setTimeout(function () {
+        const ls = document.getElementById('loading-screen');
+        if (ls) ls.classList.add('hidden');
+      }, 500);
 
-    // Start animation
-    animate();
+      // Start animation
+      animate();
+    } catch (err) {
+      console.error('Inisialisasi simulasi gagal:', err);
+      const ls = document.getElementById('loading-screen');
+      if (ls) {
+        ls.innerHTML = '<div style="padding:20px;text-align:center;color:#ff6b6b"><h2>⚠️ Terjadi Kendala Memuat 3D</h2><p style="margin-top:10px;color:#fff">' + err.message + '</p><button class="btn btn-accent" style="margin-top:15px" onclick="location.reload()">Muat Ulang Halaman</button></div>';
+      }
+    }
   }
 
   // Start when DOM is ready
